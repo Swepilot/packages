@@ -44,22 +44,17 @@ class CameraPreview extends StatelessWidget {
   }
 
   Widget _wrapInRotatedBox({required Widget child}) {
-
-    return Container();
     
     // The causes the preview to be skewed and incorrectly rotated
     // in PhyronPhoto. Always return child;
-    // if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
-    //   return child;
-    // }
+    if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
+      return child;
+    }
 
-    // return RotatedBox(
-    //   quarterTurns: _getQuarterTurns(),
-    //   child: child,
-    // );
-
-    return child;
-    
+    return RotatedBox(
+      quarterTurns: _getQuarterTurns(),
+      child: child,
+    );
   }
 
   bool _isLandscape() {
